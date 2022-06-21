@@ -14,7 +14,7 @@ class ListProfiles(APIView):
     permission_classes = (IsAuthenticated,)  
     # TODO
     # 1. Add tests e coverage,
-    # 2. Add authentication,
+    # check for more implementations like latitude stuff.
     # 4. Create a front-end page with Reactjs.
 
     @method_decorator(vary_on_cookie)
