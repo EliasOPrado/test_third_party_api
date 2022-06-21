@@ -41,9 +41,10 @@ INSTALLED_APPS = [
     'api_app',
     'rest_framework',
     'rest_framework.authtoken',
-    'django_nose'
+    'django_nose',
 ]
 
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -79,15 +80,15 @@ TEMPLATES = [
     },
 ]
 
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django_redis.cache.RedisCache',
-#         'LOCATION': 'redis://redis:6379/0',
-#         'OPTIONS': {
-#             'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-#         }
-#     }
-# }
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': 'redis://redis:6379/0',
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}
 
 # Cache time to live is 15 minutes.
 CACHE_TTL = 60 * 15
