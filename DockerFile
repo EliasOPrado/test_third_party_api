@@ -1,0 +1,15 @@
+FROM python:3.9-alpine3.15
+
+ENV PYTHONUNBUFFERED 1
+ENV PYTHONHTTPSVERIFY=0
+
+RUN apk update 
+RUN mkdir -p ~/.ssh 
+
+ADD ["./entrypoint.sh", "/"]
+
+RUN chmod +x /entrypoint.sh 
+
+FROM postgres:13.0-alpine
+
+ADD ./init-user-db.sh /docker-entrypoint-initdb.d/init-user-db.sh

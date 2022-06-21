@@ -1,0 +1,50 @@
+version: "3.7"
+services:
+    sample360:
+        build: 
+          context: ./containers/django
+
+        image: django:3.2
+        command: "sh -c ./entrypoint.sh"
+        volumes:
+          - ./:/app
+        ports:
+          - "8000:8000"
+        links: 
+          - postgres
+          - redis
+        depends_on: 
+          - postgres
+          - redis
+        networks: 
+          - front
+        env_file:
+          - .env
+    postgres:
+      build:
+        context: ./containers/postgres
+      image: postgres:13.0-alpine
+      ports:
+         - "5432:5432"
+      environment:
+        POSTGRES_USER: juntossomosmais
+        POSTGRES_PASSWORD: juntossomosmais
+        POSTGRES_DB: juntossomosmais
+      networks:
+        - front
+      restart: on-failure
+      volumes:
+        - ./data/postgres:/var/lib
+    
+    redis:
+      image: redis:5.0.7
+      container_name: redis
+      ports:
+        - 6379:6379
+      networks:
+        - front
+      env_file:
+        - .env
+networks:
+  front:
+    driver: bridge
