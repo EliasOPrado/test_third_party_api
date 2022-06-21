@@ -1,15 +1,11 @@
-FROM python:3.9-alpine3.15
-
+FROM python:3.7-alpine
+ 
 ENV PYTHONUNBUFFERED 1
-ENV PYTHONHTTPSVERIFY=0
+COPY ./requirements.txt /requirements.txt
 
-RUN apk update 
-RUN mkdir -p ~/.ssh 
+RUN pip install -r /requirements.txt
+RUN apk del .tmp-build-deps
 
-ADD ["./entrypoint.sh", "/"]
-
-RUN chmod +x /entrypoint.sh 
-
-FROM postgres:13.0-alpine
-
-ADD ./init-user-db.sh /docker-entrypoint-initdb.d/init-user-db.sh
+RUN mkdir /app
+COPY ./app /app
+WORKDIR /app
