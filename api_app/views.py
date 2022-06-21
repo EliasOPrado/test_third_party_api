@@ -8,9 +8,12 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_cookie
 
+from rest_framework.permissions import IsAuthenticated 
+
 class ListProfiles(APIView):
+    permission_classes = (IsAuthenticated,)  
     # TODO
-    # 1. Add tests coverage,
+    # 1. Add tests e coverage,
     # 2. Add authentication,
     # 4. Create a front-end page with Reactjs.
 
