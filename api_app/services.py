@@ -21,7 +21,7 @@ class Services:
         "maxlat": -46.603598,
     }
 
-    def is_between(a, x, b):
+    def is_between(self, a, x, b):
         return min(a, b) < x < max(a, b)
 
     # add max and min for both..
@@ -52,5 +52,6 @@ class Services:
             return "laborious"
 
     def to_e164_format(self, str_phone):
+        # transform internationalf number format to e164.
         phone = "".join(x for x in str_phone if x.isdigit() or x == "+")
         return f"+55{phone}"
