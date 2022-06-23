@@ -1,5 +1,7 @@
 from rest_framework import serializers
+
 from .services import Services
+
 
 class NameSerializer(serializers.Serializer):
     title = serializers.CharField(max_length=200)
@@ -52,7 +54,7 @@ class ProfileSerializer(serializers.Serializer):
         profile = Services()
 
         return {
-            "type":profile.check_user_type(instance['location']['coordinates']),
+            "type": profile.check_user_type(instance["location"]["coordinates"]),
             "gender": "m" if instance["gender"] == "male" else "f",
             "name": instance["name"],
             "location": instance["location"],

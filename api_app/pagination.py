@@ -3,7 +3,6 @@ from rest_framework.response import Response
 
 
 class CustomPagination:
-
     def __init__(self, list_of_objects: list, limit: str, offset: str, request) -> str:
         self.results = list_of_objects
         self.limit = limit
