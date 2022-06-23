@@ -1,5 +1,4 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
-from rest_framework.response import Response
 
 
 class CustomPagination:
@@ -44,13 +43,12 @@ class CustomPagination:
         )
 
         # SEND TO DATA AND ADD THE RESPONSE IN THE VIEW>...
-        return Response(
-            {
-                "pageNumber": api_next - 1,
-                "pageSize": limit,
-                "totalCount": api_count,
-                "nextPage": next_page_link,
-                "previousPage": previous_page_link,
-                "users": list(results),
-            }
-        )
+
+        return {
+            "pageNumber": api_next - 1,
+            "pageSize": limit,
+            "totalCount": api_count,
+            "nextPage": next_page_link,
+            "previousPage": previous_page_link,
+            "users": list(results),
+        }
