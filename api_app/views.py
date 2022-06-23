@@ -2,6 +2,7 @@ from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_cookie
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from .api_connection import data
@@ -29,4 +30,6 @@ class ListProfiles(APIView):
         serializer.is_valid()
         results = serializer.data
 
-        return CustomPagination(results, "limit", "offset", request).pagination()
+        data = CustomPagination(results, "limit", "offset", request).pagination()
+
+        return Response(data)
