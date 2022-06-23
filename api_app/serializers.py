@@ -1,5 +1,5 @@
 from rest_framework import serializers
-
+from .services import Services
 
 class NameSerializer(serializers.Serializer):
     title = serializers.CharField(max_length=200)
@@ -47,21 +47,20 @@ class ProfileSerializer(serializers.Serializer):
     cell = serializers.CharField(max_length=200)
     picture = PictureSerializer()
 
-    def to_e164_format(self, str_phone):
-        phone = "".join(x for x in str_phone if x.isdigit() or x == "+")
-        return f"+55{phone}"
-
     def to_representation(self, instance):
 
+        profile = Services()
+
         return {
+            "type":profile.check_user_type(instance['location']['coordinates']),
             "gender": "m" if instance["gender"] == "male" else "f",
             "name": instance["name"],
             "location": instance["location"],
             "email": instance["email"],
             "birthday": instance["dob"].pop("date"),
             "registered": instance["registered"].pop("date"),
-            "telephoneNumbers": [self.to_e164_format(instance["phone"])],
-            "mobileNumbers": [self.to_e164_format(instance["cell"])],
+            "telephoneNumbers": [profile.to_e164_format(instance["phone"])],
+            "mobileNumbers": [profile.to_e164_format(instance["cell"])],
             "picture": instance["picture"],
             "nationality": "BR",
         }
