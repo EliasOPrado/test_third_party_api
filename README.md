@@ -12,6 +12,7 @@
 8. Foi adicionado testes com coverage para api.
 9. Foi adicionado `cors_headers` com `whitelable` dando acesso a requests.
 10. O tratamento dos dados foram feitos dentro dos serializers.
+11. Foi usada a autenticacao padrao do drf.
 
 
 ## Como testar:
@@ -30,9 +31,22 @@ DJANGO_DEBUG=True
 $ docker-compose up --build
 ```
 
+3. URLS:
+
+GET api-list:
+```
+http://0.0.0.0:8000/api/
+```
+
+POST token:
+```
+http://0.0.0.0:8000/api/api-token-auth/
+```
 
 ## Comentarios:
 
 ### Sobre o sistema de coordenadas.
-* Nao entendi perfeitamente como era para passar/acessar as coordenadas em termos de localizacao. Se era para gerar novos enderecos e inclui-los nos campos de location baseados nas coordenadas passadas no teste e depois tipa-los baseados nesses valores gerados. O que fiz foi unir os dois tipos de usuarios `SPECIAL` e criar uma funcao `Serivices.check_user_type({"longitude":"latitude"})` para checar se o mesmo era `special`, `normal` ou `laborious`.
+* Nao entendi perfeitamente como era para passar/acessar as coordenadas em termos de localizacao. Se era para gerar novos enderecos e inclui-los nos campos de location baseados nas coordenadas passadas no teste e depois tipa-los baseados nesses valores gerados. 
+
+O que fiz foi unir os dois tipos de usuarios `SPECIAL` e criar uma funcao `Serivices.check_user_type({"longitude":"latitude"})` para checar se o mesmo era `special`, `normal` ou `laborious`. Sendo assim, creio que baseado nas coordenadas listadas no endpoint creio que todos os objetos estejam com `type=laborious`.
 
