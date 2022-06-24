@@ -7,7 +7,7 @@
 3. Alterado os valores de `gender` de `female` e `male` para `f` e `m`.
 4. Retirado o campo `age` de `dob` e `registered`.
 5. Modificado os campos `phone` e `cell` para `telephoneNumbers` e `mobileNumbers` e tambem adicionado os valores dentro de uma lista.
-6. Regra de `type` de usuarios incluida. *
+6. Regra de `type` de usuarios incluida. 
 7. Sistema de paginacao como os valores `pageNumber`, `pageSize` e  `totalCount`. Tomei a liberdade de adicionar outros dois campos como `nextPage` e `previousPage` como link para a proxima ou pagina anterior.
 8. Foi adicionado testes com coverage para api.
 9. Foi adicionado `cors_headers` com `whitelable` dando acesso a requests.
@@ -46,7 +46,7 @@ http://0.0.0.0:8000/api/api-token-auth/
 ## Comentarios:
 
 ### Sobre o sistema de coordenadas.
-* Nao entendi perfeitamente como era para passar/acessar as coordenadas em termos de localizacao. Se era para gerar novos enderecos e inclui-los nos campos de location baseados nas coordenadas passadas no teste e depois tipa-los baseados nesses valores gerados. 
+Nao entendi perfeitamente como era para passar/acessar as coordenadas em termos de localizacao. Se era para gerar novos enderecos e inclui-los nos campos de location baseados nas coordenadas passadas no teste e depois tipa-los baseados nesses valores gerados. 
 
 O que fiz foi unir os dois tipos de usuarios `SPECIAL` e criar uma funcao `Serivices.check_user_type({"longitude":"latitude"})` para checar se o mesmo era `special`, `normal` ou `laborious`. Sendo assim, creio que baseado nas coordenadas listadas no endpoint creio que todos os objetos estejam com `type=laborious`.
 
