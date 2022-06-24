@@ -27,10 +27,16 @@ class Services:
     # add max and min for both..
     SPECIAL = {}
 
+    # special user coordination fusion.
+
+    # get the smallest longitude.
     SPECIAL["minlon"] = min(SPECIAL_1["minlon"], SPECIAL_2["minlon"])
+    # get the highest longitude.
     SPECIAL["maxlon"] = max(SPECIAL_1["maxlon"], SPECIAL_2["maxlon"])
 
+    # get the smallest latitude.
     SPECIAL["minlat"] = min(SPECIAL_1["minlat"], SPECIAL_2["minlat"])
+    # get the highest latitude.
     SPECIAL["maxlat"] = max(SPECIAL_1["maxlat"], SPECIAL_2["maxlat"])
 
     def check_user_type(self, coordinates):
