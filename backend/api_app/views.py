@@ -11,7 +11,7 @@ from .serializers import ProfileSerializer
 
 
 class ListProfiles(APIView):
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
     # TODO
     # 1. Add tests e coverage,
     # check for more implementations like latitude stuff.
