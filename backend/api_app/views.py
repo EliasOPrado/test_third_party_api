@@ -12,10 +12,6 @@ from .serializers import ProfileSerializer
 
 class ListProfiles(APIView):
     permission_classes = (IsAuthenticated,)
-    # TODO
-    # 1. Add tests e coverage,
-    # check for more implementations like latitude stuff.
-    # 4. Create a front-end page with Reactjs.
 
     @method_decorator(vary_on_cookie)
     @method_decorator(cache_page(60 * 60))
