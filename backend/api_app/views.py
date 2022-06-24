@@ -11,7 +11,7 @@ from .serializers import ProfileSerializer
 
 
 class ListProfiles(APIView):
-    permission_classes = (IsAuthenticated,)
+    # permission_classes = (IsAuthenticated,)
     # TODO
     # 1. Add tests e coverage,
     # check for more implementations like latitude stuff.
@@ -30,6 +30,6 @@ class ListProfiles(APIView):
         serializer.is_valid()
         results = serializer.data
 
-        data = CustomPagination(results, "limit", "offset", request).pagination()
+        data_with_pagination = CustomPagination(results, "limit", "offset", request).pagination()
 
-        return Response(data)
+        return Response(data_with_pagination)
